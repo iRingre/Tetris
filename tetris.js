@@ -84,9 +84,13 @@ function refresh(){
         for (let j = 0; j < colonnapx; j++) {
             console.log((contieni[(colonnapx*index)+j])+'---'+((index*colonnapx)+j));
             if (contieni[(colonnapx*index)+j]!=2)  {
-                fill(0);
+                fill(200);
                 rect(j*hpx,index*wpx,hpx,wpx);
                 contieni[(colonnapx*index)+j]=0;
+            }else{
+                fill(255);
+                rect(j*hpx,index*wpx,hpx,wpx);
+                //contieni[(colonnapx*index)+j]=2;
             }
         }
         console.log('\r');
@@ -139,27 +143,23 @@ function draw(){
         tempoGenerazione++;
         if(tempoGenerazione>=60){
             tempoGenerazione=0;
-            movimentoSG+=1;
             controllo();
-            geenraPezzo();
+            geenraPezzo();  
+            movimentoSG+=1;
             console.log("posizione colonna ="+ movimentoSG);
             console.log('\r');
-            
-            
         }
         provaFine++;
         if (provaFine>=(60*(rigapx-1))) {
             controllo();
             refresh();
-            stop=true;
+            stop=false;
             tetromino = floor(random(tetrominoes.length));
             provaFine=0;
             movimentoSG=0;
             movimento=0;
-
         }
     }
-       
 }
 
 function keyPressed() {
