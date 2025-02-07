@@ -1,2 +1,3 @@
 # Tetris
- gioco in tetris in JS
+ gioco tetris in JS
+https://iringre.github.io/Tetris/
