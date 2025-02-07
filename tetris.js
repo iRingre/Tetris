@@ -61,7 +61,7 @@ function setup(){
         }
         //console.log('\r')
     };
-    console.log("porchi dei");
+    //console.log("porchi dei");
     geenraPezzo();
 }
 
@@ -75,7 +75,25 @@ function controllo(){
                 } 
             }
         }
+        return true;
+    }else{
+        
+        for (let index = 0; index < rigapx; index++) {
+            for (let j = 0; j < colonnapx; j++) {
+                if(contieni[(colonnapx*index)+j]===1 && contieni[(colonnapx*(index+1))+j]===2){
+                    for (let i = 0; i < rigapx; i++) {
+                        for (let x = 0; x < colonnapx; x++) {
+                            if(contieni[(colonnapx*i)+x]===1)contieni[(colonnapx*i)+x]=2;
+                        }
+                    }
+                    return true;
+                    //console.log("posizione vettoriale numero: "+((colonnapx*index)+j));
+                } 
+            }
+        }
     }
+    return false;
+    
 }
 
 function refresh(){
@@ -84,7 +102,7 @@ function refresh(){
         for (let j = 0; j < colonnapx; j++) {
             console.log((contieni[(colonnapx*index)+j])+'---'+((index*colonnapx)+j));
             if (contieni[(colonnapx*index)+j]!=2)  {
-                fill(200);
+                fill(5);
                 rect(j*hpx,index*wpx,hpx,wpx);
                 contieni[(colonnapx*index)+j]=0;
             }else{
@@ -139,6 +157,7 @@ function geenraPezzo() {
 }
 
 function draw(){
+   
     if(!stop){
         tempoGenerazione++;
         if(tempoGenerazione>=60){
@@ -149,9 +168,8 @@ function draw(){
             console.log("posizione colonna ="+ movimentoSG);
             console.log('\r');
         }
-        provaFine++;
-        if (provaFine>=(60*(rigapx-1))) {
-            controllo();
+        if (controllo()) {
+            //controllo();
             refresh();
             stop=false;
             tetromino = floor(random(tetrominoes.length));
