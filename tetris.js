@@ -193,5 +193,16 @@ function keyPressed() {
         //tetromino = floor(random(tetrominoes.length));
         geenraPezzo();
     }
+    if (keyCode === DOWN_ARROW) {
+        movimentoSG+=1;
+        if (movimentoSG>=rigapx-1) {
+            movimentoSG=rigapx-2;
+            
+        }
+        tempoGenerazione=0;
+        //refresh();
+        //tetromino = floor(random(tetrominoes.length));
+        geenraPezzo();
+    }
 }
 
