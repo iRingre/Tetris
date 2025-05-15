@@ -1,0 +1,55 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>p5.js Sketch</title>
+  <script src="https://cdn.jsdelivr.net/npm/p5@1.6.0/lib/p5.min.js"></script>
+  <style>
+    body { margin: 0; overflow: hidden; }
+    canvas { display: block; }
+  </style>
+</head>
+<body>
+  <script>
+    class Cerchio {
+  constructor(x, y, r, colore) {
+    this.x = x;
+    this.y = y;
+    this.r = r;
+    this.colore = colore;
+  }
+
+  muovi() {
+    this.x += random(-2, 2);
+    this.y += random(-2, 2);
+    this.disegna();
+  }
+
+  disegna() {
+    fill(this.colore);
+    noStroke();
+    circle(this.x, this.y, this.r * 2);
+  }
+}
+
+let palline = [];
+
+function setup() {
+  createCanvas(windowWidth, windowHeight);
+  for (let i = 0; i < 30; i++) {
+    palline.push(new Cerchio(random(width), random(height), random(10, 40), color(random(255), random(255), random(255))));
+  }
+}
+
+function draw() {
+  background(0, 20); // effetto scia
+  for (let c of palline) {
+    c.muovi();
+  }
+}
+
+  </script>
+</body>
+</html>
